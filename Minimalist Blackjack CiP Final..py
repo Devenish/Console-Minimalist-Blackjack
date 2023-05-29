@@ -18,7 +18,7 @@ start_player_cards() - Deal players first cards.
 start_dealer_cards() - Deal dealers first cards.
 player_starting_data() - Display players first cards.
 dealer_starting_data() - Display dealers first cards.
-get_hand_value() - Used to get value of playyrs hand of cards.
+get_hand_value() - Used to get value of players hand of cards.
 display_full_hand() - Used to display full list of all cards in a hand.
 deal_new_card() - Used to deal a new card to an existing hand.
 get_insurance() - Presents the player with option to purchase insurance.
@@ -41,12 +41,14 @@ NUM_OF_DECKS = 3 # How many decks used in an active game.
 MED_PAUSE = 0.9 # time to pause for visual delay.
 
 def intro():
-    #A welcome message when starting the game.
+    """A welcome message when starting the game.
+    """
     print(f"\nWelcome to Minimalist Console Blackjack")
 
 
 def thank_you():
-    #A thank you message when exiting the game.
+    """A thank you message when exiting the game.
+    """
     print(f"Thank you for playing! \n\nA special thanks to everyone at Code in Place 2021.\n")
 
 
@@ -126,11 +128,11 @@ def refresh_deck(card_deck, pack_of_cards, NUM_OF_DECKS, cut_num):
             Multiple decks of cards combined and shuffled and ready to be dealt.
         pack_of_cards List with sublist (integer, integer, string, string) as (Value of 2-11, Num 2-14, "Suit", "Card Name")
         NUM_OF_DECKS: Constant to determine how many decks are used.
-        cut_num: Interger for random number, to determin when to cut cards again.
+        cut_num: Integer for random number, to determine when to cut cards again.
 
     Returns:
         card_deck: list of cards refreshed.
-        cut_num: Interger for random number, to determin when to cut cards again.
+        cut_num: Integer for random number, to determine when to cut cards again.
     """    
     # Build a playing deck with multiple packs of cards and then shuffles them.
     # Will also check how often deck needs to be reshuffled from the radom cut.
@@ -145,7 +147,7 @@ def refresh_deck(card_deck, pack_of_cards, NUM_OF_DECKS, cut_num):
 def on_the_house(player_balance):
     """If player is running low on credits, the house will give more.
     Inputs:
-        player_balance: Interger of players running credit balance.
+        player_balance: Integer of players running credit balance.
     Returns:
         player_balance: Updated with extra free credit.
     """
@@ -233,7 +235,7 @@ def dealer_starting_data(dealer_hand):
 
 def get_hand_value(player_hand):
     """Imports a hand of cards, then loops through to get a value the hand is worth. It will decide
-        if the Ace's are to be counted as 1 or 11. then return the final value as interger.
+        if the Ace's are to be counted as 1 or 11. then return the final value as integer.
     Inputs:
         player_hand: List with sublist (integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name").
     Returns:
@@ -314,7 +316,7 @@ def get_insurance(dealer_hand, player_hand, bet_amount, player_balance):
         player_balance: The running balance of credits teh player has available.
     Returns:
         insurance_bet: Integer representing value of the player taking insurance to be applied against their balance.
-        game_push: Boolean to determin if during insurance bet a Push game happend and skip rest of the game.
+        game_push: Boolean to determine if during insurance bet a Push game happened and skip rest of the game.
     """    
     # Set push as not true.
     game_push = False
@@ -376,7 +378,7 @@ def double_down(card_deck, player_hand, bet_amount, player_balance):
             A List of all 52 cards each stored as a sublist (int value, int card num, str suit, str of name).
         player_hand: list with sublist (integer, integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name").
         bet_amount: Integer value of the current bet amount.
-        player_balance: Interger reflecting current value of credits in players bank.
+        player_balance: Integer reflecting current value of credits in players bank.
     Returns:
         card_deck: List will reflect the new missing card data.
         player_hand: List will reflect new data added.
@@ -471,13 +473,13 @@ def player_split_hand(card_deck, player_hand, player_balance, bet_amount):
         card_deck: List with sublist (integer, integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name")
             A List of all 52 cards each stored as a sublist (int value, int card num, str suit, str of name).
         player_hand: list with sublist (integer, integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name") 
-        player_balance: Interger reflecting current value of credits in players bank.
+        player_balance: Integer reflecting current value of credits in players bank.
         bet_amount: Integer value of the current bet amount.
     Returns:
         card_deck: Updated to reflect cards removed from list.
         player_hand: Updated to reflect cards removed and added to list.
         player_hand2: Updated to reflect cards added to list.
-        bet_amount2: Interger valued added based on bet_amount and user choices.
+        bet_amount2: Integer valued added based on bet_amount and user choices.
     """    
     # Defined blank list and variable for later use.
     player_hand2 = []
@@ -534,11 +536,11 @@ def player_main_hand(card_deck, player_hand, bet_amount, player_balance):
             A List of all 52 cards each stored as a sublist (int value, int card num, str suit, str of name).
         player_hand: list with sublist (integer, integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name"). 
         bet_amount: Integer value of the current bet amount.
-        player_balance: Interger reflecting current value of credits in players bank.
+        player_balance: Integer reflecting current value of credits in players bank.
     Returns:
         card_deck: Updated to reflect cards removed from list.
         player_hand: Updated to reflect cards added to list.
-        bet_amount: Interger valued of the players associated bet
+        bet_amount: Integer valued of the players associated bet
     """
     #Get value of cards.
     player_hand_value = get_hand_value(player_hand)
@@ -563,7 +565,7 @@ def player_main_hand(card_deck, player_hand, bet_amount, player_balance):
 
 
 def dealer_plays_hand(card_deck, dealer_hand, player_hand, player_hand2):
-    """Dealer attempts to beat player hand(S) without going bust. It first determins which player_hand is larger in value,
+    """Dealer attempts to beat player hand(S) without going bust. It first determines which player_hand is larger in value,
         bust not bust; hand1 or hand2. Once determined the Dealer will attempt to get a higher value with its hand and exit.
     Inputs:
         card_deck card_deck: List with sublist (integer, integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name")
@@ -579,7 +581,7 @@ def dealer_plays_hand(card_deck, dealer_hand, player_hand, player_hand2):
     player_hand_value2 = get_hand_value(player_hand2)
     dealer_hand_value = get_hand_value(dealer_hand)
 
-    # Determin which hand the dealer needs to beat from split.
+    # Determine which hand the dealer needs to beat from split.
     if player_hand_value1 <= 21 and player_hand_value1 >= player_hand_value2:
         player_winning_hand = player_hand_value1
     elif player_hand_value2 <= 21 and player_hand_value2 > player_hand_value1 and player_hand_value2 > 1: 
@@ -618,7 +620,7 @@ def dealer_plays_hand(card_deck, dealer_hand, player_hand, player_hand2):
 
 
 def settlements(dealer_hand, player_hand, player_hand2, bet_amount, bet_amount2, player_balance):
-    """Will take in all needed game data for the round, determin the winner for each hand and 
+    """Will take in all needed game data for the round, determine the winner for each hand and 
         payoff / collect current bets. The final information is displayed in a summery for the user.
     Inputs:
         dealer_hand: List with sublist (integer, integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name"). 
@@ -626,7 +628,7 @@ def settlements(dealer_hand, player_hand, player_hand2, bet_amount, bet_amount2,
         player_hand2 List with sublist (integer, integer, string, string) as (Value of 2-11, 2-14, "Suit", "Card Name").
         bet_amount: Integer value of the current bet amount.
         bet_amount2: Integer value of the current bet amount.
-        player_balance: Interger reflecting current value of credits in players bank. 
+        player_balance: Integer reflecting current value of credits in players bank. 
     Returns:
         player_balance: Updated to reflect players performance and continue a running balance.
     """
@@ -644,7 +646,7 @@ def settlements(dealer_hand, player_hand, player_hand2, bet_amount, bet_amount2,
             bet_summery = str("Payout: "+(str(bet_amount2)+" credits lost"))
         # If dealer bust, but not player.
         elif dealer_hand_value > 21 and player_hand_value2 <=21: #Just to be sure!
-            bet_amount2 = bet_amount2 * 2
+            # Mistake do not double since money is not removed yet. Old >> bet_amount2 = bet_amount2 * 2
             who_won = "The House bust, player wins."
             bet_summery = str("Payout: +"+(str(bet_amount2)+" credits won"))
         # If the hand is a push.
@@ -654,7 +656,7 @@ def settlements(dealer_hand, player_hand, player_hand2, bet_amount, bet_amount2,
             bet_amount2 = 0
         # If player hand wins.   
         elif player_hand_value2 <= 21 and player_hand_value2 > dealer_hand_value:
-            bet_amount2 = bet_amount2 * 2
+            # Mistake do not double since money is not removed yet. Old >> bet_amount2 = bet_amount2 * 2
             who_won = "Player Wins!"
             bet_summery = str("Payout: +"+(str(bet_amount2)+" credits won"))
         # The dealer wins.
@@ -681,7 +683,7 @@ def settlements(dealer_hand, player_hand, player_hand2, bet_amount, bet_amount2,
         bet_summery = str("Payout: "+(str(bet_amount)+" credits lost"))
     # If dealer bust
     elif dealer_hand_value > 21 and player_hand_value1 <=21: #Just to be sure!
-        bet_amount = bet_amount * 2
+        # Mistake do not double since money is not removed yet. Old >> bet_amount = bet_amount * 2
         who_won = "The House bust, player wins."
         bet_summery = str("Payout: +"+(str(bet_amount)+" credits won"))
     # If the hand is a push.
@@ -691,7 +693,7 @@ def settlements(dealer_hand, player_hand, player_hand2, bet_amount, bet_amount2,
         bet_amount = 0
     # If player hand wins.   
     elif player_hand_value1 <= 21 and player_hand_value1 > dealer_hand_value:
-        bet_amount = bet_amount * 2
+        # Mistake do not double since money is not removed yet. Old >> bet_amount = bet_amount * 2
         who_won = "Player Wins"
         bet_summery = str("Payout: +"+(str(bet_amount)+" credits won"))
     # The dealer wins.
